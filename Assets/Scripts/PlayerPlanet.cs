@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 public class PlayerPlanet : MonoBehaviour
 {
-    
+
     [Header("Positional Information")]
     [SerializeField]
     public Vector3 planetPosition;
@@ -31,7 +31,6 @@ public class PlayerPlanet : MonoBehaviour
     [Header("All of the Elements on the Planet")]
     [SerializeField]
     private List<Element.element> elementsOnPlanet;
-
     /* [SerializeField]
      private GameObject self;*/
 
@@ -45,7 +44,9 @@ public class PlayerPlanet : MonoBehaviour
     private float temperatureDelta;
 
     private float yBound = 0;
-    
+
+    //Changed by the XR Interactable Script on grab
+    private bool isMoving = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,7 +59,7 @@ public class PlayerPlanet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(lockPos)
+        if (lockPos)
         {
             if (transform.localPosition.y > yBound)
             {
@@ -77,17 +78,17 @@ public class PlayerPlanet : MonoBehaviour
         }
 
         setTemp();
-        
+
         if (isWatered)
         {
             this.gameObject.GetComponent<Renderer>().material = waterPlanet;
             /*temperatureDelta = 800 / Vector3.Distance(star.transform.position, this.gameObject.transform.position);*/
 
         }
-        else if(isImpacted)
+        else if (isImpacted)
         {
             this.gameObject.GetComponent<Renderer>().material = impactedPlanet;
-            StopCoroutine("setTemp"); 
+            StopCoroutine("setTemp");
         }
         else
         {
@@ -95,9 +96,26 @@ public class PlayerPlanet : MonoBehaviour
         }
     }
 
-    
+
+    public int getCountOfElement(Element.element e)
+    {
+        int retVal = 0;
+        /*foreach(Element.element in elementsOnPlanet)
+        {
+            
+        }*/
+        return retVal;
+    }
 
     //Getters and Setters
+
+    /* 
+     * Getting the list of elements
+     */
+    public List<Element.element> GetElements()
+    {
+        return elementsOnPlanet;
+    }
 
     /*
      * Getting and Setting the temperature
@@ -108,14 +126,12 @@ public class PlayerPlanet : MonoBehaviour
         return temperature;
     }
 
-     public void setTemp()
+    public void setTemp()
     {
-        
-        
         temperatureDelta = Vector3.Distance(star.transform.position, this.gameObject.transform.position);
         //Only continue this calculation if the planet hasn't been impacted recently
         if (!isImpacted) { temperature = 1000 / temperatureDelta; }
-       
+
     }
 
     public int getTempAsInt()
@@ -124,7 +140,7 @@ public class PlayerPlanet : MonoBehaviour
     }
 
 
-   public void setImpactedTrue(GameObject a)
+    public void setImpactedTrue(GameObject a)
     {
         elementsOnPlanet.Add(a.GetComponent<Asteroid>().getElementPresent());
         Debug.Log(elementsOnPlanet.ToString());
@@ -137,7 +153,7 @@ public class PlayerPlanet : MonoBehaviour
     {
         StopCoroutine(ImpactTempCalc());
         isImpacted = false;
-        
+
     }
 
     /*Coroutine to raise the temperature of the planet on impact, then slowly goes back to normal */
@@ -146,25 +162,37 @@ public class PlayerPlanet : MonoBehaviour
         Debug.Log("Entered Corutine");
         isImpacted = true;
         int impactTemp = 1000;
-        for(int i = impactTemp; i >= 0; i--)
+        for (int i = impactTemp; i >= 0; i--)
         {
-            
-            
             temperature = impactTemp + (1000f / temperatureDelta);
-            
+
             impactTemp--;
             yield return new WaitForSeconds(.2f);
         }
         setImpactedFalse();
     }
 
-    public void OnDrawGizmos()
+    /*public void OnDrawGizmos()
     {
         Gizmos.color = Color.grey;
         Handles.DrawWireDisc(star.transform.position, new Vector3(0, 1, 0), temperatureDelta, 2f);
+    }*/
+
+
+    /*
+     * 
+     * DrawOrbit() Will be called by XRGrabInteractable Hover Entered
+     * 
+     * 
+     * EraseDrawOrbit() Will be called by XRGrabInteractable Hover Exited
+     */
+    public void DrawOrbit()
+    {
+
     }
 
+    public void EraseDrawOrbit()
+    {
 
-
-
+    }
 }

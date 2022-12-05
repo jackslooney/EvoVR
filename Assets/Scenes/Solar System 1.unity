@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 8189a16de517c7c49aa33eba198d819c, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 0cd7cec3b1a351843960bcf40a8648ff, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0022178253, g: 0.0021231056, b: 0.0020811167, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2346,13 +2346,110 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7546137396432274905, guid: b46ddad3949ef8149be45dea59a880b4,
         type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546137396432274905, guid: b46ddad3949ef8149be45dea59a880b4,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546137396432274905, guid: b46ddad3949ef8149be45dea59a880b4,
+        type: 3}
+      propertyPath: m_FirstSelectEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546137396432274905, guid: b46ddad3949ef8149be45dea59a880b4,
+        type: 3}
       propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7546137396432274905, guid: b46ddad3949ef8149be45dea59a880b4,
         type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546137396432274905, guid: b46ddad3949ef8149be45dea59a880b4,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546137396432274905, guid: b46ddad3949ef8149be45dea59a880b4,
+        type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3080373095287298013}
+    - target: {fileID: 7546137396432274905, guid: b46ddad3949ef8149be45dea59a880b4,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3080373095287298013}
+    - target: {fileID: 7546137396432274905, guid: b46ddad3949ef8149be45dea59a880b4,
+        type: 3}
       propertyPath: m_HoverEntered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7546137396432274905, guid: b46ddad3949ef8149be45dea59a880b4,
+        type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546137396432274905, guid: b46ddad3949ef8149be45dea59a880b4,
+        type: 3}
+      propertyPath: m_FirstSelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546137396432274905, guid: b46ddad3949ef8149be45dea59a880b4,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546137396432274905, guid: b46ddad3949ef8149be45dea59a880b4,
+        type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: setIsMovingTrue
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546137396432274905, guid: b46ddad3949ef8149be45dea59a880b4,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: setIsMovingFalse
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546137396432274905, guid: b46ddad3949ef8149be45dea59a880b4,
+        type: 3}
+      propertyPath: m_FirstSelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546137396432274905, guid: b46ddad3949ef8149be45dea59a880b4,
+        type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: rotate, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546137396432274905, guid: b46ddad3949ef8149be45dea59a880b4,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: rotate, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546137396432274905, guid: b46ddad3949ef8149be45dea59a880b4,
+        type: 3}
+      propertyPath: m_SelectExited.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7546137396432274905, guid: b46ddad3949ef8149be45dea59a880b4,
+        type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b46ddad3949ef8149be45dea59a880b4, type: 3}
+--- !u!114 &3080373095287298013 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3080373095410738333, guid: b46ddad3949ef8149be45dea59a880b4,
+    type: 3}
+  m_PrefabInstance: {fileID: 3080373095287298012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7455e887c1678a94b90995f6af2ca3c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

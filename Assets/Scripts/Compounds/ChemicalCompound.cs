@@ -6,9 +6,7 @@ public abstract class ChemicalCompound : Element
 {
 
     public string name;
-
     public List<element> ingredients;
-
     public string use;
 
     public ChemicalCompound(List<element> element)
@@ -48,7 +46,6 @@ public abstract class ChemicalCompound : Element
         {
             retVal = "Water is great soup";
         }
-
         return retVal;
     }
 }
