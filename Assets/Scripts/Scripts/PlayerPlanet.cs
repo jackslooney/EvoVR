@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 public class PlayerPlanet : MonoBehaviour
 {
-
+    public AudioClip _clip;
     [Header("Positional Information")]
     [SerializeField]
     public Vector3 planetPosition;
@@ -30,7 +30,12 @@ public class PlayerPlanet : MonoBehaviour
     [Space]
     [Header("All of the Elements on the Planet")]
     [SerializeField]
-    private List<Element.element> elementsOnPlanet;
+    public List<Element> elementsOnPlanet = new List<Element>();
+    /*public List<Hydrogen> hydrogenOnPlanet = new List<Hydrogen>();
+    public List<Oxygen> oxygenOnPlanet = new List<Oxygen>();*/
+    [Header("All of the Compounds on the Planet")]
+    [SerializeField]
+    public List<ChemicalCompound> compoundsOnPlanet = new List<ChemicalCompound>();
     /* [SerializeField]
      private GameObject self;*/
 
@@ -45,9 +50,8 @@ public class PlayerPlanet : MonoBehaviour
 
     private float yBound = 0;
 
-    //Changed by the XR Interactable Script on grab
-    private bool isMoving = true;
-    // Start is called before the first frame update
+    
+    // Start is called be e the first frame update
     void Start()
     {
         waterPlanet = Resources.Load("Water Planet", typeof(Material)) as Material;
@@ -97,26 +101,57 @@ public class PlayerPlanet : MonoBehaviour
     }
 
 
-    public int getCountOfElement(Element.element e)
+    public int getCountOfElement(Element e)
     {
         int retVal = 0;
-        /*foreach(Element.element in elementsOnPlanet)
+        for(int i=0; i<elementsOnPlanet.Count; i++)
         {
-            
-        }*/
+            if (elementsOnPlanet[i] == e)
+            {
+                retVal++;
+            }
+        }
         return retVal;
     }
+
+
+    public int getCountOfCompound(ChemicalCompound c)
+    {
+        int retVal = 0;
+        for (int i = 0; i < compoundsOnPlanet.Count; i++)
+        {
+            if (compoundsOnPlanet[i] == c)
+            {
+                retVal++;
+            }
+        }
+        return retVal;
+    }
+
+
+    public void spendElement(Element e)
+    {
+        if(elementsOnPlanet.Contains(e)) { elementsOnPlanet.Remove(e); }
+        else { Debug.Log("Check Element Spending "+ e); }
+    }
+
 
     //Getters and Setters
 
     /* 
      * Getting the list of elements
      */
-    public List<Element.element> GetElements()
+    public List<Element> GetElements()
     {
         return elementsOnPlanet;
     }
 
+    public void addCompoundToList(ChemicalCompound c)
+    {
+        Debug.Log(c + "Compount should add");
+        compoundsOnPlanet.Add(c);
+        Debug.Log(compoundsOnPlanet);
+    }
     /*
      * Getting and Setting the temperature
      * 
@@ -142,10 +177,19 @@ public class PlayerPlanet : MonoBehaviour
 
     public void setImpactedTrue(GameObject a)
     {
-        elementsOnPlanet.Add(a.GetComponent<Asteroid>().getElementPresent());
-        Debug.Log(elementsOnPlanet.ToString());
-        /*Destroy(asteroid.gameObject);*/
-
+        
+        Asteroid tempVal = a.GetComponent<Asteroid>();
+        /*Debug.Log(a.name);
+        Debug.Log(a.GetComponent<Asteroid>().getElementPresent());*/
+        elementsOnPlanet.Add(tempVal.getElementPresent());
+        
+        /*for(int i=0; i<elementsOnPlanet.Count; i++)
+        {
+            Debug.Log(elementsOnPlanet[i]);
+        }*/
+        Destroy(a.gameObject);
+        AudioSource.PlayClipAtPoint(_clip, transform.position);
+        if(isImpacted) { return; }
         StartCoroutine(ImpactTempCalc());
     }
 
@@ -159,16 +203,17 @@ public class PlayerPlanet : MonoBehaviour
     /*Coroutine to raise the temperature of the planet on impact, then slowly goes back to normal */
     IEnumerator ImpactTempCalc()
     {
-        Debug.Log("Entered Corutine");
         isImpacted = true;
+        Debug.Log("Entered Corutine");
         int impactTemp = 1000;
         for (int i = impactTemp; i >= 0; i--)
         {
             temperature = impactTemp + (1000f / temperatureDelta);
-
             impactTemp--;
             yield return new WaitForSeconds(.2f);
         }
+        //TESTING
+        /*yield return new WaitForSeconds(.2f);*/
         setImpactedFalse();
     }
 

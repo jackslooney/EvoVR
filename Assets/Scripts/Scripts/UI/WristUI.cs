@@ -6,7 +6,7 @@ public class WristUI : MonoBehaviour
 {
 
     PlayerPlanet playerPlanet;
-
+    public GameObject ElementManagementCanvas;
     [SerializeField]
     private TextMeshProUGUI temperatureDisplay;
     [SerializeField]
@@ -29,8 +29,11 @@ public class WristUI : MonoBehaviour
         if(GameObject.FindGameObjectWithTag("Asteroid"))
         {
             asteroid = GameObject.FindGameObjectWithTag("Asteroid").GetComponent<Asteroid>();
-            /*asteroidAlert.fontSize = */
+            asteroidAlert.fontSize = 1.3f;
+           /* Debug.Log(asteroid.name);
+            Debug.Log(asteroid.getElementPresent());*/
             asteroidAlert.text = "ASTEROID DETECTED!\n\nElement Present:\n" + asteroid.getElementPresentAsString();
+            asteroid = null;
         } else
         {
             asteroid = null;
@@ -46,4 +49,18 @@ public class WristUI : MonoBehaviour
         //isAsteroid = true;
     }
    
+
+
+    public void toggleManagementCanvas()
+    {
+        if(ElementManagementCanvas.activeInHierarchy == false)
+        {
+            ElementManagementCanvas.SetActive(true);
+        }
+        else if(ElementManagementCanvas.activeInHierarchy == true)
+        {
+            ElementManagementCanvas.SetActive(false);
+        }
+    }
+    
 }

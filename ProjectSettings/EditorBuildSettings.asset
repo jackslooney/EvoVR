@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Solar System 1.unity
     guid: 46abec7601d19f645aa38b4b210a3b7c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/On Planet.unity
     guid: 588ee2b380bdbd440a36d135edf75be2
   m_configObjects:

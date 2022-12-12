@@ -10,8 +10,9 @@ public class Asteroid : MonoBehaviour
     /*public bool containsWater = false;
     public bool containsCarbon = false;*/
 
+    public ElementTracker elementTracker;
     [SerializeField]
-    private Element elementPresent = new Element();
+    private Element elementPresent;
 
     [SerializeField]
     private float speed = 4f;
@@ -24,6 +25,7 @@ public class Asteroid : MonoBehaviour
 
     private void Awake()
     {
+        elementTracker = GameObject.FindObjectOfType<ElementTracker>().GetComponent<ElementTracker>();
         setElementPresent();
     }
     // Update is called once per frame
@@ -50,6 +52,9 @@ public class Asteroid : MonoBehaviour
     {
         isMoving = !isMoving;
     }
+
+
+    //If it hits the PlayerPlanet
     private void OnTriggerEnter(Collider other)
     {
         //Some kind of interaction triggered on collision with the playerPlanet
@@ -71,23 +76,22 @@ public class Asteroid : MonoBehaviour
     }
 
     /* Getters and Setters for the Elements */
-    
+
     private void setElementPresent()
     {
-        elementPresent.setElementSelected();
+        elementPresent = elementTracker.pickElement();
     }
 
+
+
     //returns the element present
-    public Element.element getElementPresent()
+    public Element getElementPresent()
     {
-        return elementPresent.getElementSelected();
+        return elementPresent;
     }
 
     public string getElementPresentAsString()
     {
-        return elementPresent.getElementSelectedAsString();
+        return elementPresent.getChemicalName();
     }
-
-
-    
 }

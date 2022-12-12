@@ -7,7 +7,7 @@ public class MeteorManager : MonoBehaviour
     [Header("Prefab Timeeee")]
     public GameObject prefab;
     [Header("List of Asteroids")]
-    public List<GameObject> asteroids = new List<GameObject>();
+    //public List<GameObject> asteroids = new List<GameObject>();
 
     public bool stopSpawn = false;
     public float spawnTimer;
@@ -37,10 +37,7 @@ public class MeteorManager : MonoBehaviour
     public Quaternion spawnRotation;
     [SerializeField]
     private float angleInRadians = 0;
-    [Space]
-    [Header("UI Shit")]
-    [SerializeField]
-    private WristUI wristUI;
+   
 
     //Private Variables
     
@@ -48,7 +45,6 @@ public class MeteorManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        wristUI = GameObject.FindObjectOfType<Canvas>().GetComponent<WristUI>();
         spawnDelay = Random.Range(minTime, maxTime);
     }
 
@@ -83,8 +79,8 @@ public class MeteorManager : MonoBehaviour
         float spawnPosZ = spawnRadius * Mathf.Sin(angleInRadians) + transform.position.z;
         spawnPos = new Vector3(spawnPosX, transform.position.y, spawnPosZ);
         /*Debug.Log(spawnAngle.z + " " + spawnAngle.y);*/
-        GameObject o = Instantiate(prefab, spawnPos, spawnAngle);
-        asteroids.Add(o);
+        Instantiate(prefab, spawnPos, spawnAngle);
+        //asteroids.Add(o);
         spawnDelay = Random.Range(minTime, maxTime);
         spawnTimer = 0;
         //o.GetComponent<Rigidbody>().velocity = Vector3.forward;
@@ -97,7 +93,7 @@ public class MeteorManager : MonoBehaviour
         xSpawnRotation = Random.Range(-xRotationRange, xRotationRange);
         ySpawnRotation = ySpawnRotation - 45;
         zSpawnRotation = Random.Range(-zRotationRange, zRotationRange);
-        Debug.Log(xSpawnRotation + " " + ySpawnRotation + " " + zSpawnRotation);
+        //Debug.Log(xSpawnRotation + " " + ySpawnRotation + " " + zSpawnRotation);
     }
     
     private float iterateRadians(float radians)
@@ -106,16 +102,16 @@ public class MeteorManager : MonoBehaviour
         radians += (Mathf.PI / 4);
         if (radians >= ((2*Mathf.PI) + 1) && radians <= ((2 * Mathf.PI) - 1))
         {
-            Debug.Log("Angle Reset");
+            //Debug.Log("Angle Reset");
             radians = 0f;
         }
-        Debug.Log("Radians added " + radians);
+        //Debug.Log("Radians added " + radians);
         return radians;
     }
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         Gizmos.color = Color.white;
         //Gizmos.DrawWireSphere(transform.position, spawnRadius);
         Handles.DrawWireDisc(transform.position, new Vector3(0, 1, 0), spawnRadius);
-    }
+    }*/
 }

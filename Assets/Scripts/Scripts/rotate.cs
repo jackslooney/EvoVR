@@ -32,9 +32,4 @@ public class rotate : MonoBehaviour
         if (isMoving) { return; }
         isMoving = true;
     }
-
-
-
-
-
 }
