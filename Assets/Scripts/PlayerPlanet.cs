@@ -13,51 +13,59 @@ public class PlayerPlanet : MonoBehaviour
 
     [Header("Planet Temperature")]
     [SerializeField]
-    private float temperature;
+    public float temperature;
 
     [Header("Lock the Y Axis of this planet")]
     public bool lockPos = true;
-    [Header("Add water to this planet")]
-    [SerializeField]
-    private bool isWatered;
-    [Header("Add Humidity to the this planet")]
-    [SerializeField]
-    private bool isHumid;
+    // [Header("Add water to this planet")]
+    // [SerializeField]
+    // private bool isWatered;
+    // [Header("Add Humidity to the this planet")]
+    // [SerializeField]
+    // private bool isHumid;
 
     [Header("If the planet has been impacted recently")]
     [SerializeField]
-    private bool isImpacted;
-    [Space]
+    public bool isImpacted;
+    
     [Header("All of the Elements on the Planet")]
     [SerializeField]
     public List<Element> elementsOnPlanet = new List<Element>();
-    /*public List<Hydrogen> hydrogenOnPlanet = new List<Hydrogen>();
-    public List<Oxygen> oxygenOnPlanet = new List<Oxygen>();*/
     [Header("All of the Compounds on the Planet")]
     [SerializeField]
     public List<ChemicalCompound> compoundsOnPlanet = new List<ChemicalCompound>();
-    /* [SerializeField]
-     private GameObject self;*/
+    [Space]
+    [Space]
+    [Space]
 
+    // For Journal Management
+    public Element tempEl;
+
+    public ChemicalCompound latestCompound;
+
+    [Header("Planet States")]
+    public GameObject waterPlanet;
+    public GameObject greenPlanet;
+    public GameObject impactedPlanet;
     /* All Private Variables */
     //Water Material
-    private Material waterPlanet;
-    private Material rockPlanet;
-    private Material impactedPlanet;
+    // private Material rockPlanet;
+    // private Material impactedPlanet;
 
     //TemperatureDelta is the radius of the orbit
     private float temperatureDelta;
 
     private float yBound = 0;
 
+    [Space]
+    [Header("Tracker for reference to element and compound definitions")]
+    public ElementTracker tracker;
     
-    // Start is called be e the first frame update
+    // Start is called before the first frame update
     void Start()
     {
-        waterPlanet = Resources.Load("Water Planet", typeof(Material)) as Material;
-        rockPlanet = Resources.Load("Default Rock", typeof(Material)) as Material;
-        impactedPlanet = Resources.Load("Impact_Planet", typeof(Material)) as Material;
-        StartCoroutine("setTemp");
+        // //start the temperature tracking
+        // StartCoroutine("setTemp");
     }
 
     // Update is called once per frame
@@ -83,24 +91,35 @@ public class PlayerPlanet : MonoBehaviour
 
         setTemp();
 
-        if (isWatered)
+        if (getCountOfCompound(tracker.getWater()) >= 1)
         {
-            this.gameObject.GetComponent<Renderer>().material = waterPlanet;
-            /*temperatureDelta = 800 / Vector3.Distance(star.transform.position, this.gameObject.transform.position);*/
-
+            waterPlanet.SetActive(true);
+        } 
+        // if(getCountOfCompound(tracker.getWater()) > 4) {
+        //     isHumid = true;
+        // }
+        if(getCountOfElement(tracker.getNitrogen()) > 3 && getCountOfCompound(tracker.GetOzone()) > 4) {
+            greenPlanet.SetActive(true);
         }
-        else if (isImpacted)
+        if (isImpacted)
         {
-            this.gameObject.GetComponent<Renderer>().material = impactedPlanet;
-            StopCoroutine("setTemp");
+            impactedPlanet.SetActive(true);
+            // StopCoroutine("setTemp");
         }
-        else
-        {
-            this.gameObject.GetComponent<Renderer>().material = rockPlanet;
-        }
+        
     }
 
 
+
+    //Element Management
+    public void spendElement(Element e)
+    {
+        if(elementsOnPlanet.Contains(e)) { elementsOnPlanet.Remove(e); }
+        else { Debug.Log("Check Element Spending " + e); }
+    }
+
+
+    //Getters and Setters
     public int getCountOfElement(Element e)
     {
         int retVal = 0;
@@ -114,7 +133,23 @@ public class PlayerPlanet : MonoBehaviour
         return retVal;
     }
 
+    /* 
+     * Getting the list of elements
+     */
+    public List<Element> GetElements()
+    {
+        return elementsOnPlanet;
+    }
 
+
+    // Compound Management
+    public void addCompoundToList(ChemicalCompound c)
+    {
+        Debug.Log(c + "Compound should add");
+        compoundsOnPlanet.Add(c);
+        latestCompound = c;
+        Debug.Log(compoundsOnPlanet);
+    }
     public int getCountOfCompound(ChemicalCompound c)
     {
         int retVal = 0;
@@ -126,31 +161,6 @@ public class PlayerPlanet : MonoBehaviour
             }
         }
         return retVal;
-    }
-
-
-    public void spendElement(Element e)
-    {
-        if(elementsOnPlanet.Contains(e)) { elementsOnPlanet.Remove(e); }
-        else { Debug.Log("Check Element Spending "+ e); }
-    }
-
-
-    //Getters and Setters
-
-    /* 
-     * Getting the list of elements
-     */
-    public List<Element> GetElements()
-    {
-        return elementsOnPlanet;
-    }
-
-    public void addCompoundToList(ChemicalCompound c)
-    {
-        Debug.Log(c + "Compount should add");
-        compoundsOnPlanet.Add(c);
-        Debug.Log(compoundsOnPlanet);
     }
     /*
      * Getting and Setting the temperature
@@ -164,7 +174,6 @@ public class PlayerPlanet : MonoBehaviour
     public void setTemp()
     {
         temperatureDelta = Vector3.Distance(star.transform.position, this.gameObject.transform.position);
-        //Only continue this calculation if the planet hasn't been impacted recently
         if (!isImpacted) { temperature = 1000 / temperatureDelta; }
 
     }
@@ -175,6 +184,10 @@ public class PlayerPlanet : MonoBehaviour
     }
 
 
+    /* Handler for Asteroid Impacts
+     * a -- Asteroid
+     * Returns -- void
+     */
     public void setImpactedTrue(GameObject a)
     {
         
@@ -183,6 +196,8 @@ public class PlayerPlanet : MonoBehaviour
         Debug.Log(a.GetComponent<Asteroid>().getElementPresent());*/
         elementsOnPlanet.Add(tempVal.getElementPresent());
         
+        //for checking journal entries
+        tempEl = tempVal.getElementPresent();
         /*for(int i=0; i<elementsOnPlanet.Count; i++)
         {
             Debug.Log(elementsOnPlanet[i]);
@@ -193,10 +208,16 @@ public class PlayerPlanet : MonoBehaviour
         StartCoroutine(ImpactTempCalc());
     }
 
+    /**
+     * Stops the CoRoutine that runs on impact
+      * 
+     */
     public void setImpactedFalse()
     {
         StopCoroutine(ImpactTempCalc());
         isImpacted = false;
+        impactedPlanet.SetActive(false);
+        StartCoroutine("setTemp");
 
     }
 
@@ -204,13 +225,13 @@ public class PlayerPlanet : MonoBehaviour
     IEnumerator ImpactTempCalc()
     {
         isImpacted = true;
-        Debug.Log("Entered Corutine");
-        int impactTemp = 1000;
+        Debug.Log(isImpacted);
+        int impactTemp = 200;
         for (int i = impactTemp; i >= 0; i--)
         {
             temperature = impactTemp + (1000f / temperatureDelta);
             impactTemp--;
-            yield return new WaitForSeconds(.2f);
+            yield return new WaitForSeconds(.1f);
         }
         //TESTING
         /*yield return new WaitForSeconds(.2f);*/
@@ -239,5 +260,9 @@ public class PlayerPlanet : MonoBehaviour
     public void EraseDrawOrbit()
     {
 
+    }
+
+    public void setNullCompound() {
+        latestCompound = null;
     }
 }

@@ -12,7 +12,7 @@ public class Hydrogen : Element
         this.protons = 1;
         this.electrons = 1;
 
-        this.description = "An element with only one bond";
+        this.description = "An element with only one bond, and an essential ingredient for life!";
 
         this.classification = group.Nonmetal;
 

@@ -7,7 +7,7 @@ public class MeteorManager : MonoBehaviour
     [Header("Prefab Timeeee")]
     public GameObject prefab;
     [Header("List of Asteroids")]
-    //public List<GameObject> asteroids = new List<GameObject>();
+    public List<GameObject> prefabs = new List<GameObject>();
 
     public bool stopSpawn = false;
     public float spawnTimer;
@@ -40,7 +40,7 @@ public class MeteorManager : MonoBehaviour
    
 
     //Private Variables
-    
+    public int index;
 
     // Start is called before the first frame update
     private void Start()
@@ -71,6 +71,9 @@ public class MeteorManager : MonoBehaviour
 
     public void spawnAsteroid()
     {
+        index = Random.Range(0, prefabs.Count);
+        Debug.Log(index);
+        prefab = prefabs[index];
         fixAsteroidAngle();
         Quaternion spawnAngle = Quaternion.Euler(xSpawnRotation, ySpawnRotation, zSpawnRotation);
         //Randomize the spawnPosition along the spawnRadius
@@ -84,8 +87,6 @@ public class MeteorManager : MonoBehaviour
         spawnDelay = Random.Range(minTime, maxTime);
         spawnTimer = 0;
         //o.GetComponent<Rigidbody>().velocity = Vector3.forward;
-
-
     }
 
     private void fixAsteroidAngle()

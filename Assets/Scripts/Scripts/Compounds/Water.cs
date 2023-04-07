@@ -15,7 +15,7 @@ public class Water : ChemicalCompound
             new Oxygen()
         };
 
-        usage = "Water is one of the necessary components for getting new elements to mix together" +
-            "\nYou will now be able to make more complex compounds";
+        usage = "Liquid water is one of the necessary components for getting new elements to mix together" +
+            "\nAnd form more complex compounds!";
     }
 }

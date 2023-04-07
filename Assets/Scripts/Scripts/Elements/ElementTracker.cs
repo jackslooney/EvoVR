@@ -19,13 +19,20 @@ public class ElementTracker : MonoBehaviour
      * 
      */
     public List<Element> listedElements = new List<Element>();
-    public List<ChemicalCompound> listedCompounds = new List<ChemicalCompound>();
-    public static Water water = new Water();
     public static Hydrogen hydrogen = new Hydrogen();
     public static Oxygen oxygen = new Oxygen();
     public static Carbon carbon = new Carbon();
     public static Nitrogen nitrogen = new Nitrogen();
     
+    /*
+     * These vars keep track of what compounds exist
+     *
+     */
+    public List<ChemicalCompound> listedCompounds = new List<ChemicalCompound>();
+    public static Water water = new Water();
+    public static Methane methane = new Methane();
+    public static CarbonDioxide carbonDioxide = new CarbonDioxide();
+    public static Ozone ozone = new Ozone();
     void Awake()
     {
         listedElements = new()
@@ -34,11 +41,13 @@ public class ElementTracker : MonoBehaviour
             oxygen,
             carbon,
             nitrogen
-
         };
         listedCompounds = new()
         {
             water,
+            methane,
+            carbonDioxide,
+            ozone,
         };
     }
     
@@ -47,13 +56,13 @@ public class ElementTracker : MonoBehaviour
 
     public Element pickElement()
     {
-        Debug.Log(listedElements.Count);
-        int index = Random.Range(0, listedElements.Count-1);
+        // Debug.Log(listedElements.Count);
+        int index = Random.Range(0, listedElements.Count);
         return listedElements[index];
     }
 
 
-
+    // Getters for referencing elements
     public Hydrogen getHydrogen()
     {
         return hydrogen;
@@ -73,8 +82,22 @@ public class ElementTracker : MonoBehaviour
     {
         return carbon;
     }
+
+    //Getters for referencing compounds
     public Water getWater()
     {
         return water;
+    }
+
+    public Methane GetMethane() {
+        return methane;
+    }
+
+    public CarbonDioxide GetCarbonDioxide() {
+        return carbonDioxide;
+    }
+
+    public Ozone GetOzone() {
+        return ozone;
     }
 }

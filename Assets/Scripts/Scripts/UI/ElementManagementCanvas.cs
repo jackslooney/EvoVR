@@ -14,13 +14,23 @@ public class ElementManagementCanvas : MonoBehaviour
     public TextMeshProUGUI carbonCount;
     public TextMeshProUGUI nitrogenCount;
 
-    public TextMeshProUGUI waterCount;
+    public TextMeshProUGUI waterCount1;
+    public TextMeshProUGUI waterCount2;
+    public TextMeshProUGUI methaneCount1;
+    public TextMeshProUGUI methaneCount2;
+    public TextMeshProUGUI carbDioxCount1;
+    public TextMeshProUGUI carbDioxCount2;
+    
+    public TextMeshProUGUI ozoneCount1;
+    public TextMeshProUGUI ozoneCount2;
 
 
     public Button waterButton;
+    public Button methaneButton;
+    public Button carbDioxButton;
+    public Button ozoneButton;
 
-    public bool waterUnlocked = true;
-    private void Start()
+    void Start()
     {
         p = GameObject.FindGameObjectWithTag("PlayerPlanet").GetComponent<PlayerPlanet>();
         eTracker = FindObjectOfType<ElementTracker>().GetComponent<ElementTracker>();
@@ -53,7 +63,15 @@ public class ElementManagementCanvas : MonoBehaviour
 
     public void compoundCountUpdate()
     {
-        waterCount.text = "Water: " + p.getCountOfCompound(eTracker.getWater());
+        waterCount1.text = "Water: " + p.getCountOfCompound(eTracker.getWater());
+        waterCount2.text = "H<sub>2</sub>O: " + p.getCountOfCompound(eTracker.getWater());
+        methaneCount1.text = "Methane: " + p.getCountOfCompound(eTracker.GetMethane());
+        methaneCount2.text = "OH<sub>4</sub>: " + p.getCountOfCompound(eTracker.GetMethane());
+        carbDioxCount1.text = "Carbon Dioxide: " + p.getCountOfCompound(eTracker.GetCarbonDioxide());
+        carbDioxCount2.text = "CO<sub>2</sub>: " + p.getCountOfCompound(eTracker.GetCarbonDioxide());
+        ozoneCount1.text = "Ozone: " + p.getCountOfCompound(eTracker.GetOzone());
+        ozoneCount2.text = "O<sub>3</sub>: " + p.getCountOfCompound(eTracker.GetOzone());
+        
     }
 
 
@@ -69,6 +87,41 @@ public class ElementManagementCanvas : MonoBehaviour
         }
         else { Debug.Log("Not enough Elements"); }
     }
+
+    public void craftMethane()
+    {
+        if(p.getCountOfElement(eTracker.getCarbon()) >= 1 && p.getCountOfElement(eTracker.getHydrogen()) >= 4) 
+        {
+            p.spendElement(eTracker.getOxygen());
+            p.spendElement(eTracker.getHydrogen());
+            p.spendElement(eTracker.getHydrogen());
+            p.spendElement(eTracker.getHydrogen());
+            p.spendElement(eTracker.getHydrogen());
+        }
+        else { Debug.Log("Not enough Elements"); }
+    }
+
+    public void craftCarbonDioxide() 
+    {
+        if(p.getCountOfElement(eTracker.getCarbon()) >= 1 && p.getCountOfElement(eTracker.getOxygen()) >= 2) 
+        {
+            p.spendElement(eTracker.getCarbon());
+            p.spendElement(eTracker.getOxygen());
+            p.spendElement(eTracker.getOxygen());
+        }
+        else { Debug.Log("Not enough Elements"); }
+    }
+
+    public void craftOzone() {
+        if(p.getCountOfElement(eTracker.getOxygen()) >= 3) 
+        {
+            p.spendElement(eTracker.getOxygen());
+            p.spendElement(eTracker.getOxygen());
+            p.spendElement(eTracker.getOxygen());
+        }
+        else { Debug.Log("Not enough Elements"); }
+    }
+
 
     /*private IEnumerator checkForUnlock()
     {

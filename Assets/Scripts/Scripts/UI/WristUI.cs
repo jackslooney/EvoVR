@@ -7,6 +7,7 @@ public class WristUI : MonoBehaviour
 
     PlayerPlanet playerPlanet;
     public GameObject ElementManagementCanvas;
+    public GameObject JournalCanvas;
     [SerializeField]
     private TextMeshProUGUI temperatureDisplay;
     [SerializeField]
@@ -55,6 +56,9 @@ public class WristUI : MonoBehaviour
     {
         if(ElementManagementCanvas.activeInHierarchy == false)
         {
+            if(JournalCanvas.activeInHierarchy == true) {
+                JournalCanvas.SetActive(false);
+            }
             ElementManagementCanvas.SetActive(true);
         }
         else if(ElementManagementCanvas.activeInHierarchy == true)
@@ -63,4 +67,19 @@ public class WristUI : MonoBehaviour
         }
     }
     
+
+    public void toggleJournalCanvas() {
+        if(JournalCanvas.activeInHierarchy == false)
+        {
+            if(ElementManagementCanvas.activeInHierarchy == true) {
+                ElementManagementCanvas.SetActive(false);
+            }
+            JournalCanvas.SetActive(true);
+        }
+        else if(JournalCanvas.activeInHierarchy == true)
+        {
+            
+            JournalCanvas.SetActive(false);
+        }
+    }
 }
