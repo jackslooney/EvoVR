@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ProgressionManager : MonoBehaviour
 {
@@ -27,24 +28,26 @@ public class ProgressionManager : MonoBehaviour
         if(playerPlanet.temperature > 0 && playerPlanet.temperature < 100) {
             goldylocksTemp = true;
         }
-        if(playerPlanet.getCountOfCompound(tracker.getWater()) >= 4) {
+        if(playerPlanet.getCountOfCompound(tracker.getWater()) >= 2) {
             waterObjective = true;
         }
-        if(playerPlanet.getCountOfCompound(tracker.GetCarbonDioxide()) >= 3) {
-            waterObjective = true;
+        if(playerPlanet.getCountOfCompound(tracker.GetCarbonDioxide()) >= 1) {
+            carbonDioxObjective = true;
         }
-        if(playerPlanet.getCountOfCompound(tracker.GetOzone()) >= 2) {
-            waterObjective = true;
+        if(playerPlanet.getCountOfCompound(tracker.GetOzone()) >= 1) {
+            ozoneObjective = true;
         }
         // if(playerPlanet.getCountOfCompound(tracker.getMethane()) >= 4) {
         //     methaneObjective = true;
         // }
-        if(playerPlanet.getCountOfElement(tracker.getOxygen()) >= 3) {
+        if(playerPlanet.getCountOfElement(tracker.getOxygen()) >= 2) {
             oxygenObjective = true;
         }
-        if(playerPlanet.getCountOfElement(tracker.getNitrogen()) >= 8) {
+        if(playerPlanet.getCountOfElement(tracker.getNitrogen()) >= 3) {
             nitrogenObjective = true;
         }
-       
+        if(goldylocksTemp && waterObjective && carbonDioxObjective && ozoneObjective && oxygenObjective && nitrogenObjective) {
+            SceneManager.LoadScene(2);
+        }
     }
 }

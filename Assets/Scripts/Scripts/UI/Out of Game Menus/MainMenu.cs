@@ -10,4 +10,9 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void BackToStart()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

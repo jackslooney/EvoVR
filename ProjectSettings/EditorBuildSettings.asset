@@ -11,9 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Solar System 1.unity
     guid: 46abec7601d19f645aa38b4b210a3b7c
-  - enabled: 0
-    path: Assets/Scenes/On Planet.unity
-    guid: 588ee2b380bdbd440a36d135edf75be2
+  - enabled: 1
+    path: Assets/Scenes/End Scene.unity
+    guid: 1f00ff0a2cfff7940aed116614dbbe97
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}

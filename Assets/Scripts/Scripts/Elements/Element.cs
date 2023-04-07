@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Serializable]
 public abstract class Element
 {
     /*public enum elements { Hydrogen, Carbon, Oxygen, Nitrogen, Silicon, Chlorine, Sulfur, Iron, Magnesium, Calcium, Zinc, Potassium, Sodium };

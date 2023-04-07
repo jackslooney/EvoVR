@@ -97,6 +97,7 @@ public class ElementManagementCanvas : MonoBehaviour
             p.spendElement(eTracker.getHydrogen());
             p.spendElement(eTracker.getHydrogen());
             p.spendElement(eTracker.getHydrogen());
+            p.addCompoundToList(eTracker.GetMethane());
         }
         else { Debug.Log("Not enough Elements"); }
     }
@@ -108,6 +109,7 @@ public class ElementManagementCanvas : MonoBehaviour
             p.spendElement(eTracker.getCarbon());
             p.spendElement(eTracker.getOxygen());
             p.spendElement(eTracker.getOxygen());
+            p.addCompoundToList(eTracker.GetCarbonDioxide());
         }
         else { Debug.Log("Not enough Elements"); }
     }
@@ -118,6 +120,7 @@ public class ElementManagementCanvas : MonoBehaviour
             p.spendElement(eTracker.getOxygen());
             p.spendElement(eTracker.getOxygen());
             p.spendElement(eTracker.getOxygen());
+            p.addCompoundToList(eTracker.GetOzone());
         }
         else { Debug.Log("Not enough Elements"); }
     }

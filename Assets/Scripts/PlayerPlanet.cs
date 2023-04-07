@@ -34,9 +34,7 @@ public class PlayerPlanet : MonoBehaviour
     [Header("All of the Compounds on the Planet")]
     [SerializeField]
     public List<ChemicalCompound> compoundsOnPlanet = new List<ChemicalCompound>();
-    [Space]
-    [Space]
-    [Space]
+    
 
     // For Journal Management
     public Element tempEl;
