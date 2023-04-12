@@ -12,7 +12,7 @@ public class Oxygen : Element
         this.protons = 8;
         this.electrons = 8;
 
-        this.description = "An element with two bonds in the second electron layer";
+        this.description = "An essential element for many compounds, and also necessary for a number of lifeforms to exist.";
 
         this.classification = group.Nonmetal;
 

@@ -50,25 +50,19 @@ public class TabButton : MonoBehaviour
 
     //ShowChildren() toggle off all other sibling button's children, and shows the current button's children
     public void ShowChildren() {
-        if(elementChildren.Length > 0) {
-            Debug.Log("Element ShowChildren Entered");
             foreach(TabButton b in otherButtons) {
-                if(b.self.interactable) {
+                
                 b.HideContents();
-                }
+                Debug.Log(b.name);
+                
             }
+        if(elementChildren.Length > 0) {
+            Debug.Log("ELEMENT CHILDREN CHECK");
             foreach(ChildButton c in elementChildren) {
                 c.gameObject.SetActive(true);
             }
-            
         }
         else if(compoundChildren.Length > 0) {
-            
-            foreach(TabButton b in otherButtons) {
-                if(b.self.interactable) {
-                b.HideContents();
-                }
-            }
             foreach(ChildButtonCompound c in compoundChildren) {
                 c.gameObject.SetActive(true);
             }
@@ -78,8 +72,14 @@ public class TabButton : MonoBehaviour
 
     //Hides the children of the this button
     public void HideContents() {
-        foreach(ChildButton c in elementChildren) {
-            c.gameObject.SetActive(false);
+        if(elementChildren.Length > 0) {
+            foreach(ChildButton c in elementChildren) {
+                c.gameObject.SetActive(false);
+            }
+        } else if (compoundChildren.Length > 0) {
+             foreach(ChildButtonCompound c in compoundChildren) {
+                c.gameObject.SetActive(false);
+            }
         }
         if(elementChildren.Length > 0) {
             elementChildren[0].infoContainer.hideInterface();

@@ -14,7 +14,7 @@ public class CarbonDioxide : ChemicalCompound
             new Oxygen()
         };
 
-        usage = "Carbon Dioxide is one of the primary carbon sources for life on Earth, and is a necessary ingredient in photosynthesis for plants";
+        usage = "Carbon Dioxide is one of the primary carbon sources for life on Earth, and is a necessary ingredient in photosynthesis for plants.";
         
     }
 }

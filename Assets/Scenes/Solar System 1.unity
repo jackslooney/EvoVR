@@ -13034,7 +13034,6 @@ MonoBehaviour:
   compoundChildren: []
   otherButtons:
   - {fileID: 1602522369}
-  - {fileID: 600835672}
   unlockValue: 0
 --- !u!1 &1255362736
 GameObject:

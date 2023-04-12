@@ -15,6 +15,6 @@ public class Ozone : ChemicalCompound
             new Oxygen()
         };
 
-        usage = "Ozone is a gaseous compound that helps absorb harmful UV light from the sun";
+        usage = "Ozone is a gaseous compound that helps absorb harmful UV light from the sun.";
     }
 }

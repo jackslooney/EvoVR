@@ -12,7 +12,7 @@ public class Carbon : Element
         this.protons = 6;
         this.electrons = 6;
 
-        this.description = "An element with four bonds in the second electron layer";
+        this.description = "An element with four bonds in the second electron layer, and is one of the primary elements in biological lifeforms.";
 
         this.classification = group.Nonmetal;
 
