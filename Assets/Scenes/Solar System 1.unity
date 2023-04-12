@@ -13034,7 +13034,7 @@ MonoBehaviour:
   compoundChildren: []
   otherButtons:
   - {fileID: 1602522369}
-  unlockValue: 0
+  unlockValue: 1
 --- !u!1 &1255362736
 GameObject:
   m_ObjectHideFlags: 0
@@ -13402,7 +13402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   self: {fileID: 1299868272}
   ButtonText: {fileID: 930609074}
-  unlockValue: 0
+  unlockValue: 1
   canvas: {fileID: 1841674820}
   infoContainer: {fileID: 36833480}
   tracker: {fileID: 435466418}
@@ -15174,7 +15174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   self: {fileID: 1468575996}
   ButtonText: {fileID: 1489424449}
-  unlockValue: 0
+  unlockValue: 1
   canvas: {fileID: 1841674820}
   infoContainer: {fileID: 36833480}
   tracker: {fileID: 435466418}
@@ -16443,7 +16443,7 @@ MonoBehaviour:
   - {fileID: 1299868271}
   otherButtons:
   - {fileID: 1241376182}
-  unlockValue: 0
+  unlockValue: 1
 --- !u!114 &1602522370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16822,7 +16822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   self: {fileID: 1663679639}
   ButtonText: {fileID: 1723687273}
-  unlockValue: 0
+  unlockValue: 1
   canvas: {fileID: 1841674820}
   infoContainer: {fileID: 36833480}
   tracker: {fileID: 435466418}
@@ -18031,16 +18031,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4c027a4a95bafb48b69f25e49d0423a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unlockElements: 0
-  unlockHydrogen: 0
-  unlockOxygen: 0
-  unlockNitrogen: 0
-  unlockCarbon: 0
-  unlockCompounds: 0
-  unlockWater: 0
-  unlockMethane: 0
-  unlockCarbonDioxide: 0
-  unlockOzone: 0
+  unlockElements: 1
+  unlockHydrogen: 1
+  unlockOxygen: 1
+  unlockNitrogen: 1
+  unlockCarbon: 1
+  unlockCompounds: 1
+  unlockWater: 1
+  unlockMethane: 1
+  unlockCarbonDioxide: 1
+  unlockOzone: 1
   elementTab: {fileID: 1241376182}
   compoundTab: {fileID: 1602522369}
   playerPlanet: {fileID: 1170861850}
@@ -18986,7 +18986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   self: {fileID: 2088594762}
   ButtonText: {fileID: 1984674137}
-  unlockValue: 0
+  unlockValue: 1
   canvas: {fileID: 1841674820}
   infoContainer: {fileID: 36833480}
   tracker: {fileID: 435466418}

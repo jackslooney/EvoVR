@@ -96,7 +96,7 @@ public class PlayerPlanet : MonoBehaviour
         // if(getCountOfCompound(tracker.getWater()) > 4) {
         //     isHumid = true;
         // }
-        if(getCountOfElement(tracker.getNitrogen()) > 3 && getCountOfCompound(tracker.GetOzone()) > 4) {
+        if(getCountOfElement(tracker.getNitrogen()) > 2 && getCountOfCompound(tracker.GetOzone()) >= 1) {
             greenPlanet.SetActive(true);
         }
         if (isImpacted)
@@ -192,6 +192,7 @@ public class PlayerPlanet : MonoBehaviour
         Asteroid tempVal = a.GetComponent<Asteroid>();
         /*Debug.Log(a.name);
         Debug.Log(a.GetComponent<Asteroid>().getElementPresent());*/
+        elementsOnPlanet.Add(tempVal.getElementPresent());
         elementsOnPlanet.Add(tempVal.getElementPresent());
         
         //for checking journal entries

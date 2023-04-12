@@ -21,7 +21,7 @@ public class TabButton : MonoBehaviour
     public TabButton[] otherButtons = new TabButton[MAX_ARRAY_SIZE];
 
     [Header("Whether or not the button is Interactable")]
-    public bool unlockValue = false;
+    public bool unlockValue = true;
 
     // Start is called before the first frame update
     void Start()
